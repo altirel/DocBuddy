@@ -37,7 +37,7 @@ public class HttpS3StorageClient implements S3StorageClient {
                 .key(key)
                 .build();
 
-            return this.s3Client.getObject(request).readAllBytes();
+            return s3Client.getObject(request).readAllBytes();
         } catch (IOException e) {
 
             log.error("Error downloading file", e);
@@ -51,11 +51,11 @@ public class HttpS3StorageClient implements S3StorageClient {
         try {
 
             PutObjectRequest request = PutObjectRequest.builder()
-                .bucket(this.bucket)
+                .bucket(bucket)
                 .key(key)
                 .build();
 
-            this.s3Client.putObject(request, RequestBody.fromBytes(content));
+            s3Client.putObject(request, RequestBody.fromBytes(content));
         } catch (Exception e) {
 
             log.error("Error uploading file", e);
@@ -69,11 +69,11 @@ public class HttpS3StorageClient implements S3StorageClient {
         try {
 
             DeleteObjectRequest request = DeleteObjectRequest.builder()
-                .bucket(this.bucket)
+                .bucket(bucket)
                 .key(key)
                 .build();
 
-            this.s3Client.deleteObject(request);
+            s3Client.deleteObject(request);
         } catch (Exception e) {
 
             log.error("Error deleting file", e);
