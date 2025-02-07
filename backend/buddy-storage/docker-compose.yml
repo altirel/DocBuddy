@@ -1,0 +1,32 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: storage
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+
+  storage-service:
+    container_name: storage-service
+    build: ./
+    environment:
+      DATABASE_HOST: postgres:5432
+      DATABASE_NAME: storage
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+      - minio
+      - minio-ms
+
+volumes:
+  pg-data:
