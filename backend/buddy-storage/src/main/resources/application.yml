@@ -21,3 +21,13 @@ spring:
     show-sql: false
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+s3:
+  client:
+    enabled: true
+    provider-name: ${S3_CLIENT_PROVIDER_NAME}
+    url: ${S3_CLIENT_URL}
+    bucket: ${S3_CLIENT_BUCKET}
+    access-key: ${S3_CLIENT_ACCESS_KEY}
+    secret-key: ${S3_CLIENT_SECRET_KEY}
+    region: ${S3_CLIENT_REGION}

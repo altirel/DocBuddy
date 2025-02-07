@@ -13,6 +13,31 @@ services:
       - pg-data:/var/lib/postgresql/data
       - ./init-scripts:/docker-entrypoint-initdb.d
 
+  minio:
+    container_name: minio
+    image: minio/minio
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+
+  minio-ms:
+    container_name: minio_mc
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set myminio http://minio:9000 minioadmin minioadmin &&
+      mc mb myminio/docbuddy &&
+      echo 'Bucket created.'"
+    restart: no
+
   storage-service:
     container_name: storage-service
     build: ./
@@ -21,6 +46,12 @@ services:
       DATABASE_NAME: storage
       DATABASE_USERNAME: root
       DATABASE_PASSWORD: root
+      S3_CLIENT_PROVIDER_NAME: minio/docbuddy
+      S3_CLIENT_URL: http://minio:9000
+      S3_CLIENT_BUCKET: docbuddy
+      S3_CLIENT_ACCESS_KEY: minioadmin
+      S3_CLIENT_SECRET_KEY: minioadmin
+      S3_CLIENT_REGION: us-east-1
     ports:
       - "8081:8081"
     depends_on:
@@ -30,3 +61,4 @@ services:
 
 volumes:
   pg-data:
+  minio-data:
