@@ -4,14 +4,14 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * <p>S3 client configuration.</p>
+ * S3 client configuration.
  *
- * @param providerName Provider name
- * @param url       URL
- * @param bucket    Bucket
- * @param accessKey Access key
- * @param secretKey Secret key
- * @param region    Region
+ * @param providerName Provider name.
+ * @param url       URL.
+ * @param bucket    Bucket.
+ * @param accessKey Access key.
+ * @param secretKey Secret key.
+ * @param region    Region.
  */
 @ConfigurationProperties(prefix = "s3.client")
 public record S3ConfigurationProperties(

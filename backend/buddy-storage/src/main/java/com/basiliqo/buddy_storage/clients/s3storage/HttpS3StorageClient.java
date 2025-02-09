@@ -13,7 +13,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import java.io.IOException;
 
 /**
- * <p>Configured S3 client.</p>
+ * Configured S3 client.
  */
 @Slf4j
 @RequiredArgsConstructor
