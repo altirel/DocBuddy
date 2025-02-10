@@ -7,7 +7,7 @@ CREATE TABLE file_s3_uploading
     bucket           TEXT                     NOT NULL,
     created_at       TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
     updated_at       TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-    version          BIGINT                   NOT NULL DEFAULT 1
+    version          BIGINT                   NOT NULL DEFAULT 0
 );
 
 ALTER TABLE file_s3_uploading
