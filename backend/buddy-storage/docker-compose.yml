@@ -27,7 +27,7 @@ services:
       - minio-data:/data
 
   minio-ms:
-    container_name: minio_mc
+    container_name: minio-mc
     image: minio/mc
     depends_on:
       - minio
