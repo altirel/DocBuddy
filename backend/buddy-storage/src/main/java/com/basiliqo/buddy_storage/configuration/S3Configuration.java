@@ -36,6 +36,7 @@ public class S3Configuration {
             .credentialsProvider(StaticCredentialsProvider.create(awsBasicCredentials))
             .region(Region.of(properties.region()))
             .endpointOverride(URI.create(properties.url()))
+            .forcePathStyle(properties.pathStyle())
             .build();
 
         return new HttpS3StorageClient(bucket, providerName, s3Client);
@@ -47,4 +48,5 @@ public class S3Configuration {
 
         return new NoopS3StorageClient();
     }
+
 }

@@ -12,6 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @param accessKey Access key.
  * @param secretKey Secret key.
  * @param region    Region.
+ * @param pathStyle Path style URL format enabled.
  */
 @ConfigurationProperties(prefix = "s3.client")
 public record S3ConfigurationProperties(
@@ -20,7 +21,8 @@ public record S3ConfigurationProperties(
     @NotBlank String bucket,
     @NotBlank String accessKey,
     @NotBlank String secretKey,
-    @NotBlank String region
+    @NotBlank String region,
+    @NotBlank boolean pathStyle
 ) {
 
 }

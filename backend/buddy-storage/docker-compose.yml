@@ -52,6 +52,7 @@ services:
       S3_CLIENT_ACCESS_KEY: minioadmin
       S3_CLIENT_SECRET_KEY: minioadmin
       S3_CLIENT_REGION: us-east-1
+      S3_CLIENT_PATH_STYLE: true
     ports:
       - "8081:8081"
     depends_on:
