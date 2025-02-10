@@ -44,4 +44,20 @@ public class ExceptionHandlerController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 
+    @ExceptionHandler(UnsupportedFileFormatException.class)
+    public ResponseEntity<DetailedError> handleUnsupportedFileFormatException(UnsupportedFileFormatException e) {
+
+        DetailedError error = DetailedError.of(HttpStatus.BAD_REQUEST, e.getMessage());
+
+        return ResponseEntity.badRequest().body(error);
+    }
+
+    @ExceptionHandler(FileAccessDeniedException.class)
+    public ResponseEntity<DetailedError> handleFileAccessDeniedException(FileAccessDeniedException e) {
+
+        DetailedError error = DetailedError.of(HttpStatus.FORBIDDEN, e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
+    }
+
 }

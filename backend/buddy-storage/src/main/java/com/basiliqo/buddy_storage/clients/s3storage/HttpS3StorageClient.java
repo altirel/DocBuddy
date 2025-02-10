@@ -28,7 +28,7 @@ public class HttpS3StorageClient implements S3StorageClient {
     private final S3Client s3Client;
 
     @Override
-    public byte[] download(String key, String bucket) {
+    public byte[] download(String bucket, String key) {
 
         try {
 
