@@ -3,6 +3,8 @@ package com.basiliqo.buddy_storage.entity;
 import com.basiliqo.buddy_storage.enums.FileFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,6 +42,7 @@ public class File extends BaseEntity {
      * File format.
      */
     @Column(name = "format", nullable = false)
+    @Enumerated(EnumType.STRING)
     private FileFormat format;
 
     /**
