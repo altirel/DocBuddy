@@ -1,0 +1,1 @@
+CREATE INDEX idx_file_s3_uploading__file_id ON file_s3_uploading (file_id);
