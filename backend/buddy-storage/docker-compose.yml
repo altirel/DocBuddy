@@ -42,6 +42,7 @@ services:
     container_name: storage-service
     build: ./
     environment:
+      SERVER_PORT: 8081
       DATABASE_HOST: postgres:5432
       DATABASE_NAME: storage
       DATABASE_USERNAME: root
