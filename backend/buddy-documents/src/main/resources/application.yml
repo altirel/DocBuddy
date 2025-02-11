@@ -1,0 +1,10 @@
+server:
+  port: ${SERVER_PORT:8082}
+
+spring:
+  application:
+    name: buddy-documents
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/documents
