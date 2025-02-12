@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.UUID;
 
 /**
@@ -92,7 +94,13 @@ public class FileController {
         @RequestHeader(RequestHeaders.USER_ID) UUID userId
     ) {
 
-        return ResponseEntity.ok(fileControllerService.upload(file, userId));
+        FileResponse response = fileControllerService.upload(file, userId);
+
+        URI location = UriComponentsBuilder.fromUriString("/api/v1/files/{fileId}")
+            .buildAndExpand(response.id())
+            .toUri();
+
+        return ResponseEntity.created(location).body(response);
     }
 
     /**
